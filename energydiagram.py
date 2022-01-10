@@ -299,25 +299,26 @@ class ED:
 	    # x1, x2, x3, y1, y2, y3
             for i in ts:
 	        # i is a tuple: (end_level_id,ts_energyls,linewidth,color)
-                print(i)
-                print(self.positions[idts])
-                print(self.positions[i[0]])
+                #print(i)
+                #print(self.positions[idts])
+                #print(self.positions[i[0]])
                 start = self.positions[idts]*(self.dimension+self.space)
-                print(start)
-                print(self.dimension)
-                print(self.space)
+                #print(start)
+                #print(self.dimension)
+                #print(self.space)
                 x1 = start + self.dimension
                 x3 = self.positions[i[0]]*(self.dimension+self.space)
                 x2 = (x1+x3)/2
-                print(x1, x2, x3)
+                #print(x1, x2, x3)
                 y1 = self.energies[idts]
                 y2 = i[1]
                 y3 = self.energies[i[0]]
                 a = np.asarray([x1, x2, x3]).squeeze()
                 b = np.asarray([y1, y2, y3]).squeeze()
                 xx = np.linspace(a[0], a[2], 100)
-                yy = interpolate.pchip_interpolate(a, b, xx)
-                ax.plot(xx, yy)
+                f = interpolate.BarycentricInterpolator(a, b)
+                yn = f(xx)
+                ax.plot(xx, yn, color = i[4])
 
         for box in self.electons_boxes:
             # here we add the boxes
