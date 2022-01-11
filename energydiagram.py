@@ -314,11 +314,16 @@ class ED:
                 y2 = i[1]
                 y3 = self.energies[i[0]]
                 a = np.asarray([x1, x2, x3]).squeeze()
-                b = np.asarray([y1, y2, y3]).squeeze()
-                xx = np.linspace(a[0], a[2], 100)
-                f = interpolate.BarycentricInterpolator(a, b)
-                yn = f(xx)
-                ax.plot(xx, yn, color = i[4])
+                b1 = np.asarray([y1, y2, y1]).squeeze()
+                b2 = np.asarray([y3, y2, y3]).squeeze()
+                xx1 = np.linspace(a[0], a[1], 50)
+                xx2 = np.linspace(a[1], a[2], 50)
+                f1 = interpolate.BarycentricInterpolator(a, b1)
+                f2 = interpolate.BarycentricInterpolator(a, b2)
+                yn1 = f1(xx1)
+                yn2 = f2(xx2)
+                ax.plot(xx1, yn1, color = i[4])
+                ax.plot(xx2, yn2, color = i[4]
 
         for box in self.electons_boxes:
             # here we add the boxes
