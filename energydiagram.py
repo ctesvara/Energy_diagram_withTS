@@ -323,7 +323,7 @@ class ED:
                 yn1 = f1(xx1)
                 yn2 = f2(xx2)
                 ax.plot(xx1, yn1, color = i[4])
-                ax.plot(xx2, yn2, color = i[4]
+                ax.plot(xx2, yn2, color = i[4])
 
         for box in self.electons_boxes:
             # here we add the boxes
